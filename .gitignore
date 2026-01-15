@@ -1,0 +1,7 @@
+data/
+Thu_*.tar.gz
+*.Rhistory
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
