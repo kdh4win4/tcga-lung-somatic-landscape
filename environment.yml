@@ -7,9 +7,8 @@ dependencies:
   - python=3.10
   - r-base=4.3
   - r-tidyverse
-  - r-tcgaBiolinks
+  - r-tcgabiolinks
   - r-maftools
-  - r-complexheatmap
   - r-survival
   - r-rmarkdown
   - numpy
