@@ -38,9 +38,20 @@ for (proj in projects) {
 
     saveRDS(maf, file = glue("data/{proj}_maf.rds"))
 
-    message(glue("Downloading clinical metadata for {proj} ..."))
-    clin <- GDCquery_clinic(project = proj, type = "clinical")
-    write.csv(clin, glue("data/{proj}_clinical.csv"), row.names = FALSE)
+   message(glue("Downloading clinical metadata for {proj} ..."))
+clin <- GDCquery_clinic(project = proj, type = "clinical")
+
+clin_df <- as.data.frame(clin)
+clin_df[] <- lapply(clin_df, function(x) {
+  if (is.list(x)) {
+    sapply(x, function(y) paste(y, collapse = ";"))
+  } else {
+    x
+  }
+})
+
+write.csv(clin_df, glue("data/{proj}_clinical.csv"), row.names = FALSE)
+
 }
 
 message("🎉 Done! MAF + clinical saved in /data")
