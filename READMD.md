@@ -1,57 +1,115 @@
-# TCGA Lung Cancer Somatic Landscape Analysis
+# TCGA Lung Cancer Somatic Landscape Explorer
+_A reproducible analysis of somatic alterations in TCGA LUAD/LUSC with a focus on smoking-associated genomic signatures._
 
-This repository contains a reproducible analysis pipeline for exploring
-the mutational landscape of lung cancer using open-access TCGA datasets.
-The goal of this project is to analyze and visualize somatic alterations
-across LUAD (adenocarcinoma) and LUSC (squamous cell carcinoma), with a
-special interest in differences between never-smokers and smokers.
-
-The project demonstrates core research themes relevant to large-scale cancer
-genomics:
+## 🧬 Overview
+This repository implements a lightweight but extensible workflow for analyzing
+somatic alterations in lung cancer using openly accessible TCGA datasets.
+The project highlights core components of large-scale cancer genomics:
 - Somatic mutation profiling
-- Mutational signature deconvolution
-- Copy number alteration exploration
-- Clinical and phenotype integration
-- Reproducible analysis workflows
+- Mutational signature decomposition
+- Copy-number alteration exploration
+- Clinical phenotype integration
+- Publication-ready visualization
+
+While the Sherlock-Lung project focuses on never-smokers using deep multi-omics sequencing,
+this repository demonstrates the same conceptual workflow using open TCGA cohorts.
 
 ---
 
-## 🚀 Project Objectives
-1. Download TCGA LUAD/LUSC somatic mutation and clinical datasets
-2. Summarize driver mutations and mutational burden patterns
-3. Compare never-smoker vs smoker genomic differences (when metadata allows)
-4. Extract and interpret mutational signatures (SBS)
-5. Explore broad copy number alterations
-6. Produce publication-quality figures and summary reports
+## 🎯 Objectives
+1. Retrieve somatic mutation and clinical metadata for TCGA LUAD/LUSC
+2. Summarize mutation burden and recurrent driver events
+3. Evaluate genomic differences linked to smoking history (pending metadata stratification)
+4. Infer mutational processes via SBS signatures
+5. Explore broad copy-number alterations
+6. Produce interpretable figures and reports
 
 ---
 
-## 🧬 Data Sources
-This project uses open-access TCGA data via:
-- Genomic Data Commons (GDC)
-- UCSC Xena Public Data Hub
-- TCGAbiolinks (R/Bioconductor)
-
-No controlled-access data (*.bam/*fastq) is stored in this repo.
-
----
-
-## 🛠️ Methods & Tools
-
-### Languages
-- **R** (Bioconductor)
-- **Python** (mutational signatures / utilities)
-
-### Key Packages
-- `TCGAbiolinks`, `maftools`, `ComplexHeatmap`
-- `SigProfilerExtractor`
-- `GSVA`, `dplyr`, `ggplot2`
-
-### Optional Extensions
-- RNA–mutation integration
-- GISTIC-like CNA analysis
-- Cox models for survival
+## 📊 Expected Outputs
+- Top mutated lung cancer genes (oncoplots)
+- Tumor mutational burden distribution
+- Smoking-associated signatures (e.g., SBS4)
+- Copy-number gain/loss visualization
+- Summary Rmarkdown report
 
 ---
 
 ## 📁 Repository Structure
+~~~
+scripts/        # Reproducible R/Python workflows
+notebooks/      # Interactive data exploration
+reports/        # Rmarkdown-based summaries
+data/           # Placeholder; no raw TCGA data committed
+environment.yml # Conda environment
+~~~
+
+---
+
+## 🔧 Tools & Methods
+
+### Core Languages
+- **R** (primary)
+- **Python** (support)
+
+### Key Packages
+
+**R**
+- TCGAbiolinks  
+- maftools  
+- ComplexHeatmap  
+- tidyverse  
+
+**Python**
+- SigProfilerExtractor  
+- pandas  
+- matplotlib  
+
+---
+
+## ▶️ Quickstart
+
+### 1) Create the conda environment
+~~~
+conda env create -f environment.yml
+conda activate tcga-lung
+~~~
+
+### 2) Download TCGA mutation + clinical data
+~~~
+Rscript scripts/01_download_tcga.R
+~~~
+
+### 3) Generate mutation summary
+~~~
+Rscript scripts/02_mutation_summary.R
+~~~
+
+### 4) Extract mutational signatures
+~~~
+python scripts/03_signature_analysis.py
+~~~
+
+### 5) (Optional) Copy-number analysis
+~~~
+Rscript scripts/04_cna_analysis.R
+~~~
+
+---
+
+## 🚦 Notes
+- No controlled-access data is stored or required  
+- `data/` remains empty until analysis is run  
+- Smoking-status integration coming soon  
+- Does not require TCGA BAM/FASTQ  
+
+---
+
+## 📜 License
+MIT License
+
+---
+
+## ✉️ Contact
+**Author:** Dohoon Kim  
+GitHub: https://github.com/kdh4win4
