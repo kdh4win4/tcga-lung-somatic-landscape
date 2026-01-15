@@ -1,0 +1,19 @@
+name: tcga-lung
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - r-base=4.3
+  - r-tidyverse
+  - r-tcgaBiolinks
+  - r-maftools
+  - r-complexheatmap
+  - r-survival
+  - r-rmarkdown
+  - numpy
+  - pandas
+  - pip
+  - pip:
+      - sigprofilerextractor
