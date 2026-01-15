@@ -33,7 +33,7 @@ for (proj in projects) {
         workflow.type = "Aliquot Ensemble Somatic Variant Merging and Masking"
     )
 
-    GDCdownload(query)
+    GDCdownload(query, files.per.chunk = 50)
     maf <- GDCprepare(query)
 
     saveRDS(maf, file = glue("data/{proj}_maf.rds"))
